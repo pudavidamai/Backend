@@ -108,11 +108,43 @@ Response:
 
 ## Testing
 
-To run the tests:
+### Running Tests
+
+To run all tests in the OrdersApi.Tests project:
 
 ```bash
+cd OrdersApi.Tests
 dotnet test
 ```
+
+For more detailed test output:
+```bash
+dotnet test --logger "console;verbosity=detailed"
+```
+
+To run a specific test class:
+```bash
+dotnet test --filter "FullyQualifiedName~OrdersApi.Tests.OrderServiceTests"
+```
+
+To run a specific test method:
+```bash
+dotnet test --filter "FullyQualifiedName~OrdersApi.Tests.OrderServiceTests.CreateOrderAsync_ShouldReturnCreatedOrder"
+```
+
+### Test Structure
+
+The test project uses:
+- **xUnit** as the testing framework
+- **Moq** for mocking dependencies
+- **Microsoft.EntityFrameworkCore.InMemory** for database testing
+
+The tests are organized into three main classes:
+1. `OrderServiceTests.cs` - Tests for the service layer
+2. `OrdersControllerTests.cs` - Tests for the controller layer
+3. `OrderRepositoryTests.cs` - Tests for the repository layer
+
+Each test follows the Arrange-Act-Assert pattern and verifies different aspects of the application's functionality, including successful operations and error handling.
 
 ## Design Decisions
 
